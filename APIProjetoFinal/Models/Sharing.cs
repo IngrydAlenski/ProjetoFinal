@@ -5,7 +5,7 @@ namespace APIProjetoFinal.Models;
 
 public partial class Sharing
 {
-    public int Id { get; set; }
+    public int Idsharing { get; set; }
 
     public int Notaid { get; set; }
 

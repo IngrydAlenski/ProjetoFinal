@@ -5,7 +5,7 @@ namespace APIProjetoFinal.Models;
 
 public partial class Categorianota
 {
-    public int Id { get; set; }
+    public int Idnotacategoria { get; set; }
 
     public int Notaid { get; set; }
 

@@ -11,7 +11,11 @@ public partial class Nota
 
     public DateTime Datanota { get; set; }
 
-    public string Nota1 { get; set; } = null!;
+    public string Titulonota { get; set; } = null!;
+
+    public string Descricao { get; set; } = null!;
+
+    public DateTime Atualizacaonota { get; set; }
 
     public virtual ICollection<Categorianota> Categorianota { get; set; } = new List<Categorianota>();
 

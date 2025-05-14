@@ -16,11 +16,11 @@ public partial class Dbg5Context : DbContext
     {
     }
 
-    public virtual DbSet<Calendario> Calendarios { get; set; }
-
     public virtual DbSet<Categoria> Categorias { get; set; }
 
     public virtual DbSet<Categorianota> Categorianotas { get; set; }
+
+    public virtual DbSet<Evento> Eventos { get; set; }
 
     public virtual DbSet<Nota> Notas { get; set; }
 
@@ -34,40 +34,9 @@ public partial class Dbg5Context : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Calendario>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__calendar__3213E83F582F6A68");
-
-            entity.ToTable("calendario");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Atualizacaodata)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("atualizacaodata");
-            entity.Property(e => e.Datacriacao)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("datacriacao");
-            entity.Property(e => e.Dataevento)
-                .HasColumnType("datetime")
-                .HasColumnName("dataevento");
-            entity.Property(e => e.Descricao)
-                .IsUnicode(false)
-                .HasColumnName("descricao");
-            entity.Property(e => e.Iduser).HasColumnName("iduser");
-            entity.Property(e => e.Tipoevento)
-                .IsUnicode(false)
-                .HasColumnName("tipoevento");
-
-            entity.HasOne(d => d.IduserNavigation).WithMany(p => p.Calendarios)
-                .HasForeignKey(d => d.Iduser)
-                .HasConstraintName("FK__calendari__iduse__5CD6CB2B");
-        });
-
         modelBuilder.Entity<Categoria>(entity =>
         {
-            entity.HasKey(e => e.Idcategoria).HasName("PK__categori__140587C7BB522468");
+            entity.HasKey(e => e.Idcategoria).HasName("PK__categori__140587C7366217FC");
 
             entity.ToTable("categorias");
 
@@ -88,52 +57,75 @@ public partial class Dbg5Context : DbContext
 
         modelBuilder.Entity<Categorianota>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__categori__3213E83F7F5F6696");
+            entity.HasKey(e => e.Idnotacategoria).HasName("PK__categori__DBEBC2B20460096E");
 
             entity.ToTable("categorianotas");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Idnotacategoria).HasColumnName("idnotacategoria");
             entity.Property(e => e.Idcategoria).HasColumnName("idcategoria");
             entity.Property(e => e.Notaid).HasColumnName("notaid");
 
             entity.HasOne(d => d.IdcategoriaNavigation).WithMany(p => p.Categorianota)
                 .HasForeignKey(d => d.Idcategoria)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__categoria__idcat__5812160E");
+                .HasConstraintName("FK__categoria__idcat__59063A47");
 
             entity.HasOne(d => d.Nota).WithMany(p => p.Categorianota)
                 .HasForeignKey(d => d.Notaid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__categoria__notai__571DF1D5");
+                .HasConstraintName("FK__categoria__notai__5812160E");
+        });
+
+        modelBuilder.Entity<Evento>(entity =>
+        {
+            entity.HasKey(e => e.Idevento).HasName("PK__evento__C8A2BCFE8C8DDECC");
+
+            entity.ToTable("evento");
+
+            entity.Property(e => e.Idevento).HasColumnName("idevento");
+            entity.Property(e => e.Descricaoevento)
+                .HasColumnType("text")
+                .HasColumnName("descricaoevento");
+            entity.Property(e => e.Tipoevento)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("tipoevento");
         });
 
         modelBuilder.Entity<Nota>(entity =>
         {
-            entity.HasKey(e => e.Idnota).HasName("PK__notas__60059F493A10D579");
+            entity.HasKey(e => e.Idnota).HasName("PK__notas__60059F490941A56C");
 
             entity.ToTable("notas");
 
             entity.Property(e => e.Idnota).HasColumnName("idnota");
+            entity.Property(e => e.Atualizacaonota)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("atualizacaonota");
             entity.Property(e => e.Datanota)
                 .HasColumnType("datetime")
                 .HasColumnName("datanota");
+            entity.Property(e => e.Descricao)
+                .HasColumnType("text")
+                .HasColumnName("descricao");
             entity.Property(e => e.Iduser).HasColumnName("iduser");
-            entity.Property(e => e.Nota1)
-                .IsUnicode(false)
-                .HasColumnName("nota");
+            entity.Property(e => e.Titulonota)
+                .HasColumnType("text")
+                .HasColumnName("titulonota");
 
             entity.HasOne(d => d.IduserNavigation).WithMany(p => p.Nota)
                 .HasForeignKey(d => d.Iduser)
-                .HasConstraintName("FK__notas__iduser__4CA06362");
+                .HasConstraintName("FK__notas__iduser__4D94879B");
         });
 
         modelBuilder.Entity<Sharing>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__sharing__3213E83FC5510464");
+            entity.HasKey(e => e.Idsharing).HasName("PK__sharing__1FEC517DBDF36F4E");
 
             entity.ToTable("sharing");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Idsharing).HasColumnName("idsharing");
             entity.Property(e => e.Notaid).HasColumnName("notaid");
             entity.Property(e => e.Permissao)
                 .HasMaxLength(50)
@@ -144,21 +136,21 @@ public partial class Dbg5Context : DbContext
             entity.HasOne(d => d.Nota).WithMany(p => p.Sharings)
                 .HasForeignKey(d => d.Notaid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__sharing__notaid__4F7CD00D");
+                .HasConstraintName("FK__sharing__notaid__5070F446");
 
             entity.HasOne(d => d.Usuario).WithMany(p => p.Sharings)
                 .HasForeignKey(d => d.Usuarioid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__sharing__usuario__5070F446");
+                .HasConstraintName("FK__sharing__usuario__5165187F");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.Iduser).HasName("PK__usuario__2A50F1CE73009A3F");
+            entity.HasKey(e => e.Iduser).HasName("PK__usuario__2A50F1CE81888EBC");
 
             entity.ToTable("usuario");
 
-            entity.HasIndex(e => e.Email, "UQ__usuario__AB6E61640A55B650").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__usuario__AB6E61644048B066").IsUnique();
 
             entity.Property(e => e.Iduser).HasColumnName("iduser");
             entity.Property(e => e.Email)
