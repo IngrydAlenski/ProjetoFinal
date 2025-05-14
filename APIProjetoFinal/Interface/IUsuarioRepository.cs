@@ -2,7 +2,7 @@
 {
     public interface IUsuarioRepository
     {
-        List<>
-        void Cadastrar(usuario)
+
+
     }
 }

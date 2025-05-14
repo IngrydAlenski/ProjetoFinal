@@ -7,22 +7,6 @@
       "RelativeMoniker": "D:0:0:{3F3A9C07-D152-42CF-9982-C665C69F45D5}|APIProjetoFinal\\APIProjetoFinal.csproj|solutionrelative:apiprojetofinal\\interface\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3F3A9C07-D152-42CF-9982-C665C69F45D5}|APIProjetoFinal\\APIProjetoFinal.csproj|c:\\users\\fic\\desktop\\ingryd\\apiprojetofinal\\apiprojetofinal\\interface\\icalendariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3F3A9C07-D152-42CF-9982-C665C69F45D5}|APIProjetoFinal\\APIProjetoFinal.csproj|solutionrelative:apiprojetofinal\\interface\\icalendariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3F3A9C07-D152-42CF-9982-C665C69F45D5}|APIProjetoFinal\\APIProjetoFinal.csproj|c:\\users\\fic\\desktop\\ingryd\\apiprojetofinal\\apiprojetofinal\\interface\\ictegorianotarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3F3A9C07-D152-42CF-9982-C665C69F45D5}|APIProjetoFinal\\APIProjetoFinal.csproj|solutionrelative:apiprojetofinal\\interface\\ictegorianotarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3F3A9C07-D152-42CF-9982-C665C69F45D5}|APIProjetoFinal\\APIProjetoFinal.csproj|c:\\users\\fic\\desktop\\ingryd\\apiprojetofinal\\apiprojetofinal\\interface\\ictegoriarepositortory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3F3A9C07-D152-42CF-9982-C665C69F45D5}|APIProjetoFinal\\APIProjetoFinal.csproj|solutionrelative:apiprojetofinal\\interface\\ictegoriarepositortory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3F3A9C07-D152-42CF-9982-C665C69F45D5}|APIProjetoFinal\\APIProjetoFinal.csproj|c:\\users\\fic\\desktop\\ingryd\\apiprojetofinal\\apiprojetofinal\\interface\\isharingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3F3A9C07-D152-42CF-9982-C665C69F45D5}|APIProjetoFinal\\APIProjetoFinal.csproj|solutionrelative:apiprojetofinal\\interface\\isharingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3F3A9C07-D152-42CF-9982-C665C69F45D5}|APIProjetoFinal\\APIProjetoFinal.csproj|c:\\users\\fic\\desktop\\ingryd\\apiprojetofinal\\apiprojetofinal\\interface\\inotarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3F3A9C07-D152-42CF-9982-C665C69F45D5}|APIProjetoFinal\\APIProjetoFinal.csproj|solutionrelative:apiprojetofinal\\interface\\inotarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -34,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 8,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "INotaRepository.cs",
+              "DocumentMoniker": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\INotaRepository.cs",
+              "RelativeDocumentMoniker": "APIProjetoFinal\\Interface\\INotaRepository.cs",
+              "ToolTip": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\INotaRepository.cs",
+              "RelativeToolTip": "APIProjetoFinal\\Interface\\INotaRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T00:13:18.95Z",
+              "IsPinned": true
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:5:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
@@ -66,78 +63,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ICalendarioRepository.cs",
-              "DocumentMoniker": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\ICalendarioRepository.cs",
-              "RelativeDocumentMoniker": "APIProjetoFinal\\Interface\\ICalendarioRepository.cs",
-              "ToolTip": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\ICalendarioRepository.cs",
-              "RelativeToolTip": "APIProjetoFinal\\Interface\\ICalendarioRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T00:15:32.182Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ICtegoriaNotaRepository.cs",
-              "DocumentMoniker": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\ICtegoriaNotaRepository.cs",
-              "RelativeDocumentMoniker": "APIProjetoFinal\\Interface\\ICtegoriaNotaRepository.cs",
-              "ToolTip": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\ICtegoriaNotaRepository.cs",
-              "RelativeToolTip": "APIProjetoFinal\\Interface\\ICtegoriaNotaRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T00:15:14.797Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ICtegoriaRepositortory.cs",
-              "DocumentMoniker": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\ICtegoriaRepositortory.cs",
-              "RelativeDocumentMoniker": "APIProjetoFinal\\Interface\\ICtegoriaRepositortory.cs",
-              "ToolTip": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\ICtegoriaRepositortory.cs",
-              "RelativeToolTip": "APIProjetoFinal\\Interface\\ICtegoriaRepositortory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T00:14:51.503Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ISharingRepository.cs",
-              "DocumentMoniker": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\ISharingRepository.cs",
-              "RelativeDocumentMoniker": "APIProjetoFinal\\Interface\\ISharingRepository.cs",
-              "ToolTip": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\ISharingRepository.cs",
-              "RelativeToolTip": "APIProjetoFinal\\Interface\\ISharingRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T00:14:21.622Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "INotaRepository.cs",
-              "DocumentMoniker": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\INotaRepository.cs",
-              "RelativeDocumentMoniker": "APIProjetoFinal\\Interface\\INotaRepository.cs",
-              "ToolTip": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\INotaRepository.cs",
-              "RelativeToolTip": "APIProjetoFinal\\Interface\\INotaRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T00:13:18.95Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "IUsuarioRepository.cs",
               "DocumentMoniker": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\IUsuarioRepository.cs",
               "RelativeDocumentMoniker": "APIProjetoFinal\\Interface\\IUsuarioRepository.cs",
               "ToolTip": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\Interface\\IUsuarioRepository.cs",
               "RelativeToolTip": "APIProjetoFinal\\Interface\\IUsuarioRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAIavwN8LkgwAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-13T00:12:48.306Z",
               "EditorCaption": ""
@@ -145,6 +77,30 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:8:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:7:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:6:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:9:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:7:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:8:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
             }
           ]
         }
