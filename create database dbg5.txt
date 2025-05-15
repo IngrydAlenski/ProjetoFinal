@@ -1,0 +1,70 @@
+create database dbg5
+
+use dbg5
+
+-- Script de criação do banco de dados conforme modelagem fornecida
+
+-- Tabela usuario
+CREATE TABLE usuario (
+    iduser INT PRIMARY KEY identity,
+    nomeuser VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL
+);
+
+-- Tabela notas
+CREATE TABLE notas (
+    idnota INT PRIMARY KEY identity,
+    iduser INT NOT NULL,
+    datanota DATETIME NOT NULL,
+	titulonota TEXT not null,
+    descricao TEXT NOT NULL,
+	atualizacaonota datetime not null default GETDATE(),
+    FOREIGN KEY (iduser) REFERENCES usuario(iduser) ON DELETE CASCADE
+);
+
+-- Tabela sharing
+CREATE TABLE sharing (
+    idsharing INT PRIMARY KEY IDENTITY(1,1),
+    notaid INT NOT NULL,
+    usuarioid INT NOT NULL,
+    permissao VARCHAR(50) NOT NULL,
+    FOREIGN KEY (notaid) REFERENCES notas(idnota) ON DELETE NO ACTION,
+    FOREIGN KEY (usuarioid) REFERENCES usuario(iduser) ON DELETE NO ACTION
+);
+
+-- Tabela categorias
+CREATE TABLE categorias (
+    idcategoria INT PRIMARY KEY identity,
+    nomecategoria VARCHAR(150) NOT NULL,
+    criacaodata DATETIME NOT NULL DEFAULT GETDATE(),
+    atualizacaodata DATETIME NOT NULL DEFAULT GETDATE()  
+);
+
+-- Tabela categorianotas
+CREATE TABLE categorianotas (
+    idnotacategoria INT PRIMARY KEY identity,
+    notaid INT NOT NULL,
+    idcategoria INT NOT NULL,
+    FOREIGN KEY (notaid) REFERENCES notas(idnota) ON DELETE NO ACTION,
+    FOREIGN KEY (idcategoria) REFERENCES categorias(idcategoria) ON DELETE NO ACTION,
+);
+
+-- Tabela calendario
+CREATE TABLE calendario (
+    idcalendario INT PRIMARY KEY identity,
+    iduser INT NOT NULL,
+	idevento int NOT NULL,
+    dataevento DATETIME NOT NULL,
+    descricao varchar (max) NOT NULL,
+    datacriacao DATETIME NOT NULL DEFAULT  GETDATE(),
+    atualizacaodata DATETIME NOT NULL DEFAULT GETDATE(),
+    FOREIGN KEY (iduser) REFERENCES usuario(iduser) ON DELETE CASCADE,
+	foreign key (idevento) references evento(idevento) on delete cascade
+);
+
+create table evento (
+idevento int primary key identity,
+tipoevento varchar (100) not null,
+descricaoevento text not null, 
+);

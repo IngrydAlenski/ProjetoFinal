@@ -1,8 +1,12 @@
-﻿namespace APIProjetoFinal.Interface
+﻿using APIProjetoFinal.Models;
+
+namespace APIProjetoFinal.Interface
 {
-    public interface IUsuarioRepository
+    public interface IUsuarioRepository 
     {
-
-
+        void Cadastrar(Usuario usuario);
+        void Atualizar(int id, Usuario usuario);
+        void Deletar(int id);
+        Usuario BuscarPorEmailSenha(string senha, string E_mail);
     }
 }
