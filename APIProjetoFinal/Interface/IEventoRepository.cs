@@ -1,6 +1,6 @@
 ﻿namespace APIProjetoFinal.Interface
 {
-    public interface ICtegoriaRepositortory
+    public class IEventoRepository
     {
     }
 }

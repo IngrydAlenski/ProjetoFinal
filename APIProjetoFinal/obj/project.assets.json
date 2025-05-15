@@ -4581,11 +4581,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\APIProjetoFinal.csproj",
+      "projectUniqueName": "C:\\Users\\FIC\\Documents\\APIPRojetoFinal\\ProjetoFinal\\APIProjetoFinal\\APIProjetoFinal.csproj",
       "projectName": "APIProjetoFinal",
-      "projectPath": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\APIProjetoFinal.csproj",
+      "projectPath": "C:\\Users\\FIC\\Documents\\APIPRojetoFinal\\ProjetoFinal\\APIProjetoFinal\\APIProjetoFinal.csproj",
       "packagesPath": "C:\\Users\\FIC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\FIC\\Desktop\\Ingryd\\APIProjetoFinal\\APIProjetoFinal\\obj\\",
+      "outputPath": "C:\\Users\\FIC\\Documents\\APIPRojetoFinal\\ProjetoFinal\\APIProjetoFinal\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
