@@ -54,14 +54,14 @@ namespace APIProjetoFinal.Repositories
 
         public void Deletar(int id)
         {
-            Usuario usuariocontrado = _context.Usuarios.Find(id);
+            Usuario usuarioencontrado = _context.Usuarios.Find(id);
 
-            if (usuariocontrado == null)
+            if (usuarioencontrado == null)
             {
                 throw new Exception();
             }
 
-            _context.Usuarios.Remove(usuariocontrado);
+            _context.Usuarios.Remove(usuarioencontrado);
 
             _context.SaveChanges();
         }

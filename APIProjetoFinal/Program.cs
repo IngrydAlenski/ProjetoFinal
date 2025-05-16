@@ -10,6 +10,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<Dbg5Context>();
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
 
 builder.Services.AddCors(
     options =>

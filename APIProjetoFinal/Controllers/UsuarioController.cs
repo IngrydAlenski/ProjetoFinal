@@ -1,8 +1,10 @@
 ﻿using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 using APIProjetoFinal.Repositories;
+using APIProjetoFinal.Serveces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace APIProjetoFinal.Controllers
 {
@@ -27,42 +29,46 @@ namespace APIProjetoFinal.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletarUsuario(int id)
         {
-            var usuarioBuscado = UsuarioRepository.(id);
+            try
+            {
+                _repository.Deletar(id);
 
-            if (usuarioBuscado == null)
-                return NotFound(); 
 
-           UsuarioRepository.Deletar(id);
+                return NoContent();
+            }
 
-            return NoContent();
+            catch (Exception ex)
+            {
+                return NotFound("Usuario não encontrado");
+            }
         }
-        [HttpPut("{id}")]
-        public IActionResult AtualizarUsuario(int id, CadastrarUsuario usuario)
+            [HttpPut("{id}")]
+        public IActionResult AtualizarUsuario(int id, Usuario usuario)
         {
-            var clienteBuscado = UsuarioRepository.BuscarPorId(id);
+            try
+            {
 
-            if (clienteBuscado == null)
-                return NotFound(); 
+                _repository.Atualizar(id, usuario);
 
-           UsuarioRepository.Atualizar(id, usuario);
+                return Ok(usuario);
+            }
 
-            return NoContent(); 
+            catch (Exception ex)
+            {
+                return NotFound("Usuario não encontrado");
+            }
         }
 
 
-        [HttpPost("Usuario")]
+        [HttpPost("Login")]
         public IActionResult Login(Usuario usuario)
         {
-            var cliente = UsuarioRepository.BuscarPorEmailSenha(usuario.Senha, usuario.Email);
+            var cliente = _repository.BuscarPorEmailSenha(usuario.Senha, usuario.Email);
 
-            if (cliente == null)
+            if (usuario == null)
             {
                 return Unauthorized("Email ou Senha invalidos!");
             }
-
-
-
-
 
             var tokenService = new TokenService();
             var token = tokenService.GenerateToken(cliente.Email);

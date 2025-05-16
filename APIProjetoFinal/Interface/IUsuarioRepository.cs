@@ -8,5 +8,6 @@ namespace APIProjetoFinal.Interface
         void Atualizar(int id, Usuario usuario);
         void Deletar(int id);
         Usuario BuscarPorEmailSenha(string senha, string E_mail);
+        
     }
 }
