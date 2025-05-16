@@ -337,3 +337,4 @@ C:\Users\FIC\Documents\APIPRojetoFinal\ProjetoFinal\APIProjetoFinal\obj\Debug\ne
 C:\Users\FIC\Documents\APIPRojetoFinal\ProjetoFinal\APIProjetoFinal\obj\Debug\net9.0\APIProjetoFinal.pdb
 C:\Users\FIC\Documents\APIPRojetoFinal\ProjetoFinal\APIProjetoFinal\obj\Debug\net9.0\APIProjetoFinal.genruntimeconfig.cache
 C:\Users\FIC\Documents\APIPRojetoFinal\ProjetoFinal\APIProjetoFinal\obj\Debug\net9.0\ref\APIProjetoFinal.dll
+C:\Users\FIC\Desktop\Ingryd\APIProjetoFinal\APIProjetoFinal\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
