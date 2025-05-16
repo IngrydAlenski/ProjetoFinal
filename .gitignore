@@ -361,3 +361,10 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/.vs/APIProjetoFinal/v17/.suo
+/.vs/APIProjetoFinal/v17/DocumentLayout.backup.json
+/.vs/APIProjetoFinal/v17/DocumentLayout.json
+/APIProjetoFinal/obj/Debug/net9.0/APIProjetoFinal.AssemblyInfo.cs
+/APIProjetoFinal/obj/Debug/net9.0/APIProjetoFinal.AssemblyInfoInputs.cache
+/APIProjetoFinal/appsettings.Development.json
+/APIProjetoFinal/appsettings.json
