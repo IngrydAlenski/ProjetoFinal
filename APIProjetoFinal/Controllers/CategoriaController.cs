@@ -17,13 +17,13 @@ namespace APIProjetoFinal.Controllers
             _categoriaRepository = categoriaRepository;
         }
 
-        [HttpGet("/ListarTodos")]
+        [HttpGet("/ListarTodasCategorias")]
         public IActionResult ListarTodos()
         {
             return Ok(_categoriaRepository.ListarTodos());
         }
 
-        [HttpGet("/BuscarPorNome/{nome}")]
+        [HttpGet("/BuscarCategoriaPorNome/{nome}")]
         public IActionResult BuscarPorNome(string nome)
         {
             Categoria categoria = _categoriaRepository.BuscarPorNome(nome);
@@ -40,7 +40,7 @@ namespace APIProjetoFinal.Controllers
 
         }
 
-        [HttpPut("/Atualizar/{id}")]
+        [HttpPut("/AtualizarCategoria/{id}")]
         public IActionResult Atualizar(int id, Categoria categ)
         {
             try 
@@ -57,7 +57,7 @@ namespace APIProjetoFinal.Controllers
             }
         }
 
-        [HttpDelete("/Deletar/{id}")]
+        [HttpDelete("/DeletarCategoria/{id}")]
         public IActionResult Deletar(int id) 
         {
             try 
@@ -73,7 +73,7 @@ namespace APIProjetoFinal.Controllers
             }
         }
 
-        [HttpPost("/Cadastrar/")]
+        [HttpPost("/CadastrarCategoria/")]
         public IActionResult CadastrarPedido(Categoria categoria)
         {
             _categoriaRepository.Cadastrar(categoria);

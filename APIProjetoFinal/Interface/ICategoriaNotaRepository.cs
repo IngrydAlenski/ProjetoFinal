@@ -1,6 +1,7 @@
 ﻿namespace APIProjetoFinal.Interface
 {
-    public interface ICtegoriaNotaRepository
+    public interface ICategoriaNotaRepository
     {
+
     }
 }

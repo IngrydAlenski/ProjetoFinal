@@ -24,52 +24,52 @@ namespace APIProjetoFinal.Controllers
                 return Created();
 
             }
-        [HttpDelete("{id}")]
-        public IActionResult DeletarUsuario(int id)
-        {
-            var usuarioBuscado = UsuarioRepository.(id);
+        //[HttpDelete("{id}")]
+        //public IActionResult DeletarUsuario(int id)
+        //{
+        //    var usuarioBuscado = UsuarioRepository.(id);
 
-            if (usuarioBuscado == null)
-                return NotFound(); 
+        //    if (usuarioBuscado == null)
+        //        return NotFound(); 
 
-           UsuarioRepository.Deletar(id);
+        //   UsuarioRepository.Deletar(id);
 
-            return NoContent();
-        }
-        [HttpPut("{id}")]
-        public IActionResult AtualizarUsuario(int id, CadastrarUsuario usuario)
-        {
-            var clienteBuscado = UsuarioRepository.BuscarPorId(id);
+        //    return NoContent();
+        //}
+        //[HttpPut("{id}")]
+        //public IActionResult AtualizarUsuario(int id, Usuario usuario)
+        //{
+        //    var clienteBuscado = UsuarioRepository.BuscarPorId(id);
 
-            if (clienteBuscado == null)
-                return NotFound(); 
+        //    if (clienteBuscado == null)
+        //        return NotFound(); 
 
-           UsuarioRepository.Atualizar(id, usuario);
+        //   UsuarioRepository.Atualizar(id, usuario);
 
-            return NoContent(); 
-        }
-
-
-        [HttpPost("Usuario")]
-        public IActionResult Login(Usuario usuario)
-        {
-            var cliente = UsuarioRepository.BuscarPorEmailSenha(usuario.Senha, usuario.Email);
-
-            if (cliente == null)
-            {
-                return Unauthorized("Email ou Senha invalidos!");
-            }
+        //    return NoContent(); 
+        //}
 
 
+        //[HttpPost("Usuario")]
+        //public IActionResult Login(Usuario usuario)
+        //{
+        //    var cliente = UsuarioRepository.BuscarPorEmailSenha(usuario.Senha, usuario.Email);
+
+        //    if (cliente == null)
+        //    {
+        //        return Unauthorized("Email ou Senha invalidos!");
+        //    }
 
 
 
-            var tokenService = new TokenService();
-            var token = tokenService.GenerateToken(cliente.Email);
 
 
-            return Ok(token);
-        }
+        //    var tokenService = new TokenService();
+        //    var token = tokenService.GenerateToken(cliente.Email);
+
+
+        //    return Ok(token);
+        //}
     }
-    }
+}
 

@@ -46,8 +46,6 @@ namespace APIProjetoFinal.Repositories
             _context.Categorias.Remove(categoriaEncontrado);
            
             _context.SaveChanges();
-
-
         }
 
         public List<Categoria> ListarTodos()
