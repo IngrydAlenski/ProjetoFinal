@@ -361,3 +361,27 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/.vs/APIProjetoFinal/DesignTimeBuild/.dtbcache.v2
+/.vs/APIProjetoFinal/v17/.futdcache.v2
+/.vs/APIProjetoFinal/v17/.suo
+/.vs/APIProjetoFinal/v17/DocumentLayout.backup.json
+/.vs/APIProjetoFinal/v17/DocumentLayout.json
+/APIProjetoFinal/bin/Debug/net9.0/APIProjetoFinal.dll
+/APIProjetoFinal/bin/Debug/net9.0/APIProjetoFinal.exe
+/APIProjetoFinal/bin/Debug/net9.0/APIProjetoFinal.pdb
+/APIProjetoFinal/bin/Debug/net9.0/appsettings.json
+/APIProjetoFinal/obj/Debug/net9.0/ref/APIProjetoFinal.dll
+/APIProjetoFinal/obj/Debug/net9.0/refint/APIProjetoFinal.dll
+/APIProjetoFinal/obj/Debug/net9.0/APIProjetoFinal.AssemblyInfo.cs
+/APIProjetoFinal/obj/Debug/net9.0/APIProjetoFinal.AssemblyInfoInputs.cache
+/APIProjetoFinal/obj/Debug/net9.0/APIProjetoFinal.csproj.CoreCompileInputs.cache
+/APIProjetoFinal/obj/Debug/net9.0/APIProjetoFinal.csproj.FileListAbsolute.txt
+/APIProjetoFinal/obj/Debug/net9.0/APIProjetoFinal.dll
+/APIProjetoFinal/obj/Debug/net9.0/APIProjetoFinal.genruntimeconfig.cache
+/APIProjetoFinal/obj/Debug/net9.0/APIProjetoFinal.pdb
+/APIProjetoFinal/obj/Debug/net9.0/APIProjetoFinal.sourcelink.json
+/APIProjetoFinal/obj/Debug/net9.0/apphost.exe
+/APIProjetoFinal/obj/APIProjetoFinal.csproj.nuget.dgspec.json
+/APIProjetoFinal/obj/project.assets.json
+/APIProjetoFinal/obj/project.nuget.cache
+*.json
