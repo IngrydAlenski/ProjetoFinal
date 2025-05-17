@@ -47,7 +47,17 @@ namespace APIProjetoFinal.Repositories
 
         public void Cadastrar(Usuario usuario)
         {
-            _context.Usuarios.Add(usuario);
+            var passwordService = new PasswordService();
+
+            Usuario usuario1 = new Usuario
+            {
+                Nomeuser = usuario.Nomeuser,
+                Email = usuario.Email,
+                Senha = usuario.Senha
+            };
+            usuario1.Senha = passwordService.HashPassword(usuario1);
+
+            _context.Usuarios.Add(usuario1);
 
             _context.SaveChanges();
         }
