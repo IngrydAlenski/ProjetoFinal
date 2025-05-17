@@ -47,8 +47,19 @@ namespace APIProjetoFinal.Repositories
 
         public void Cadastrar(Usuario usuario)
         {
-            _context.Usuarios.Add(usuario);
+            var passwordService = new PasswordService();
 
+            Usuario usuarioCadastro = new Usuario
+            {
+                Nomeuser = usuario.Nomeuser,
+                Email = usuario.Email,
+                Senha = usuario.Senha,
+            };
+
+            usuarioCadastro.Senha = passwordService.HashPassword(usuarioCadastro);
+
+
+            _context.Usuarios.Add(usuarioCadastro); // o context acessa a tabela cliente para poder adicionar/cadastrar
             _context.SaveChanges();
         }
 
