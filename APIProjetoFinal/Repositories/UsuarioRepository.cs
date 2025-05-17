@@ -49,17 +49,16 @@ namespace APIProjetoFinal.Repositories
         {
             var passwordService = new PasswordService();
 
-            Usuario usuarioCadastro = new Usuario
+            Usuario usuario1 = new Usuario
             {
                 Nomeuser = usuario.Nomeuser,
                 Email = usuario.Email,
-                Senha = usuario.Senha,
+                Senha = usuario.Senha
             };
+            usuario1.Senha = passwordService.HashPassword(usuario1);
 
-            usuarioCadastro.Senha = passwordService.HashPassword(usuarioCadastro);
+            _context.Usuarios.Add(usuario1);
 
-
-            _context.Usuarios.Add(usuarioCadastro); // o context acessa a tabela cliente para poder adicionar/cadastrar
             _context.SaveChanges();
         }
 
