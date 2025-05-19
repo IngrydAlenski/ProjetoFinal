@@ -14,7 +14,7 @@ namespace APIProjetoFinal.Serveces
                 new Claim(ClaimTypes.Email, email)
             };
 
-            var chave = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Minha-chave-ultra-mega-secreta-senai-G5.for.you"));
+            var chave = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ee4f0db1a86eeddfe9d7e9b68be0ff11860114bc14cf867570e1e3a7fa1d93ad"));
 
             var creds = new SigningCredentials(chave, SecurityAlgorithms.HmacSha256);
 
