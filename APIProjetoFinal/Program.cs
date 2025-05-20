@@ -44,7 +44,8 @@ builder.Services.AddAuthentication("Bearer")
         };
     });
 
-builder.Services.AddAuthentication();
+//builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
 var app = builder.Build();
 app.UseCors("minhasOrigens"); 
 app.UseSwagger();

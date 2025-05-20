@@ -72,7 +72,7 @@ namespace APIProjetoFinal.Controllers
             }
 
             var tokenService = new TokenService();
-            var token = tokenService.GenerateToken(Usuario.Email);
+            var token = tokenService.GenerateToken(cliente.Email);
 
 
             return Ok(token);

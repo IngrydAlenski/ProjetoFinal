@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIProjetoFinal.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+  
     public class CategoriaController : ControllerBase
     {
         private ICategoriaRepository _categoriaRepository;
@@ -16,8 +18,9 @@ namespace APIProjetoFinal.Controllers
         {
             _categoriaRepository = categoriaRepository;
         }
-
+        
         [HttpGet("/ListarTodasCategorias")]
+        [Authorize]
         public IActionResult ListarTodos()
         {
             return Ok(_categoriaRepository.ListarTodos());
