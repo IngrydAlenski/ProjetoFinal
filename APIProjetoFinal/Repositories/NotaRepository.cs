@@ -40,7 +40,12 @@ namespace APIProjetoFinal.Repositories
 
         public List<Nota> ListarTodos()
         {
-            return _context.Notas.ToList();
+            //return _context.Notas.ToList();
+
+            return _context.Notas
+               .Include(p => p.Categorianota) // quando incuir os itens do pedidos, precisa usar o ThenInclude, desta forma vai incluir os produtos relacionados ao itens produtos
+               .ThenInclude(p => p.IdcategoriaNavigation)
+               .ToList();
         }
     }
 }

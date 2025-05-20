@@ -42,7 +42,7 @@ namespace APIProjetoFinal.Controllers
                 return NotFound("Usuario não encontrado");
             }
         }
-            [HttpPut("{id}")]
+        [HttpPut("{id}")]
         public IActionResult AtualizarUsuario(int id, Usuario usuario)
         {
             try
