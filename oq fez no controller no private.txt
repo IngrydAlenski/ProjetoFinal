@@ -1,0 +1,7 @@
+oq fez no controller no private
+formato do post 
+e do listar 
+nome do que e quando usamos AlgumaCoisa.OutraCoisa
+Formato do IActionResult
+A declaração das variáveis 
+injetar o repository

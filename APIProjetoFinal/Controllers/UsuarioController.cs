@@ -1,4 +1,5 @@
-﻿using APIProjetoFinal.Interface;
+﻿using APIProjetoFinal.DTO;
+using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 using APIProjetoFinal.Repositories;
 using APIProjetoFinal.Serveces;
@@ -61,17 +62,17 @@ namespace APIProjetoFinal.Controllers
 
 
         [HttpPost("Login")]
-        public IActionResult Login(Usuario usuario)
+        public IActionResult Login(LoginDTO loginDTO)
         {
-            var cliente = _repository.BuscarPorEmailSenha(usuario.Senha, usuario.Email);
+            var cliente = _repository.BuscarPorEmailSenha(loginDTO.Senha, loginDTO.Email);
 
-            if (usuario == null)
+            if (loginDTO == null)
             {
                 return Unauthorized("Email ou Senha invalidos!");
             }
 
             var tokenService = new TokenService();
-            var token = tokenService.GenerateToken(cliente.Email);
+            var token = tokenService.GenerateToken(Usuario.Email);
 
 
             return Ok(token);
