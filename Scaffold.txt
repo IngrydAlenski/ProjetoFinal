@@ -1,1 +1,0 @@
-dotnet ef dbcontext scaffold "Data Source=NOTE25-S28\SQLEXPRESS;Initial Catalog=dbg5;User id=sa;Password=Senai@134;TrustServerCertificate=true;" Microsoft.EntityFrameworkCore.SqlServer --context-dir Context --output-dir Models -force

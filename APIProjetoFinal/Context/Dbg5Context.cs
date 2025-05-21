@@ -11,12 +11,14 @@ public partial class Dbg5Context : DbContext
     {
     }
 
-    private IConfiguration _configuration;
-    public Dbg5Context(DbContextOptions<Dbg5Context> options, IConfiguration config)
+    public Dbg5Context(DbContextOptions<Dbg5Context> options)
         : base(options)
     {
-        _configuration = config;    
     }
+
+    public virtual DbSet<AuditoriaGeral> AuditoriaGerals { get; set; }
+
+    public virtual DbSet<Calendario> Calendarios { get; set; }
 
     public virtual DbSet<Categoria> Categorias { get; set; }
 
@@ -31,28 +33,71 @@ public partial class Dbg5Context : DbContext
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var con = _configuration.GetConnectionString("DefaultConnection");
-        optionsBuilder.UseSqlServer(con);
-    }
-      
-    //=> optionsBuilder.UseSqlServer("Data Source=NOTE10-S28\\SQLEXPRESS;Initial Catalog=dbg5;User id=sa;Password=Senai@134;TrustServerCertificate=true;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=databasedbg5.database.windows.net;Initial Catalog=dbg5;User id=back_ingrid;Password=senha@123;TrustServerCertificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AuditoriaGeral>(entity =>
+        {
+            entity.HasKey(e => e.IdAuditoria).HasName("PK__Auditori__7FD13FA0B63DE6D0");
+
+            entity.ToTable("AuditoriaGeral");
+
+            entity.Property(e => e.DataAcao).HasColumnType("datetime");
+            entity.Property(e => e.NomeTabela)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.TipoAcao)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.Usuario)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Calendario>(entity =>
+        {
+            entity.HasKey(e => e.Idcalendario).HasName("PK__calendar__BF7461472ED64C49");
+
+            entity.ToTable("calendario", tb => tb.HasTrigger("trg_audit_calendario"));
+
+            entity.Property(e => e.Idcalendario).HasColumnName("idcalendario");
+            entity.Property(e => e.Atualizacaodata)
+                .HasColumnType("datetime")
+                .HasColumnName("atualizacaodata");
+            entity.Property(e => e.Datacriacao)
+                .HasColumnType("datetime")
+                .HasColumnName("datacriacao");
+            entity.Property(e => e.Dataevento)
+                .HasColumnType("datetime")
+                .HasColumnName("dataevento");
+            entity.Property(e => e.Descricao)
+                .IsUnicode(false)
+                .HasColumnName("descricao");
+            entity.Property(e => e.Idevento).HasColumnName("idevento");
+            entity.Property(e => e.Iduser).HasColumnName("iduser");
+
+            entity.HasOne(d => d.IdeventoNavigation).WithMany(p => p.Calendarios)
+                .HasForeignKey(d => d.Idevento)
+                .HasConstraintName("FK__calendari__ideve__797309D9");
+
+            entity.HasOne(d => d.IduserNavigation).WithMany(p => p.Calendarios)
+                .HasForeignKey(d => d.Iduser)
+                .HasConstraintName("FK__calendari__iduse__787EE5A0");
+        });
+
         modelBuilder.Entity<Categoria>(entity =>
         {
-            entity.HasKey(e => e.Idcategoria).HasName("PK__categori__140587C7366217FC");
+            entity.HasKey(e => e.Idcategoria).HasName("PK__categori__140587C7115049D3");
 
-            entity.ToTable("categorias");
+            entity.ToTable("categorias", tb => tb.HasTrigger("trg_audit_categorias"));
 
             entity.Property(e => e.Idcategoria).HasColumnName("idcategoria");
             entity.Property(e => e.Atualizacaodata)
-                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("atualizacaodata");
             entity.Property(e => e.Criacaodata)
-                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("criacaodata");
             entity.Property(e => e.Nomecategoria)
@@ -63,9 +108,9 @@ public partial class Dbg5Context : DbContext
 
         modelBuilder.Entity<Categorianota>(entity =>
         {
-            entity.HasKey(e => e.Idnotacategoria).HasName("PK__categori__DBEBC2B20460096E");
+            entity.HasKey(e => e.Idnotacategoria).HasName("PK__categori__DBEBC2B2F265ADE8");
 
-            entity.ToTable("categorianotas");
+            entity.ToTable("categorianotas", tb => tb.HasTrigger("trg_audit_catnota"));
 
             entity.Property(e => e.Idnotacategoria).HasColumnName("idnotacategoria");
             entity.Property(e => e.Idcategoria).HasColumnName("idcategoria");
@@ -74,17 +119,17 @@ public partial class Dbg5Context : DbContext
             entity.HasOne(d => d.IdcategoriaNavigation).WithMany(p => p.Categorianota)
                 .HasForeignKey(d => d.Idcategoria)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__categoria__idcat__59063A47");
+                .HasConstraintName("FK__categoria__idcat__6C190EBB");
 
             entity.HasOne(d => d.Nota).WithMany(p => p.Categorianota)
                 .HasForeignKey(d => d.Notaid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__categoria__notai__5812160E");
+                .HasConstraintName("FK__categoria__notai__6B24EA82");
         });
 
         modelBuilder.Entity<Evento>(entity =>
         {
-            entity.HasKey(e => e.Idevento).HasName("PK__evento__C8A2BCFE8C8DDECC");
+            entity.HasKey(e => e.Idevento).HasName("PK__evento__C8A2BCFE67EE9CD1");
 
             entity.ToTable("evento");
 
@@ -100,13 +145,12 @@ public partial class Dbg5Context : DbContext
 
         modelBuilder.Entity<Nota>(entity =>
         {
-            entity.HasKey(e => e.Idnota).HasName("PK__notas__60059F490941A56C");
+            entity.HasKey(e => e.Idnota).HasName("PK__notas__60059F491DD7711D");
 
             entity.ToTable("notas");
 
             entity.Property(e => e.Idnota).HasColumnName("idnota");
             entity.Property(e => e.Atualizacaonota)
-                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("atualizacaonota");
             entity.Property(e => e.Datanota)
@@ -122,14 +166,14 @@ public partial class Dbg5Context : DbContext
 
             entity.HasOne(d => d.IduserNavigation).WithMany(p => p.Nota)
                 .HasForeignKey(d => d.Iduser)
-                .HasConstraintName("FK__notas__iduser__4D94879B");
+                .HasConstraintName("FK__notas__iduser__60A75C0F");
         });
 
         modelBuilder.Entity<Sharing>(entity =>
         {
-            entity.HasKey(e => e.Idsharing).HasName("PK__sharing__1FEC517DBDF36F4E");
+            entity.HasKey(e => e.Idsharing).HasName("PK__sharing__1FEC517D842D7489");
 
-            entity.ToTable("sharing");
+            entity.ToTable("sharing", tb => tb.HasTrigger("trg_audit_sharing"));
 
             entity.Property(e => e.Idsharing).HasColumnName("idsharing");
             entity.Property(e => e.Notaid).HasColumnName("notaid");
@@ -142,21 +186,21 @@ public partial class Dbg5Context : DbContext
             entity.HasOne(d => d.Nota).WithMany(p => p.Sharings)
                 .HasForeignKey(d => d.Notaid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__sharing__notaid__5070F446");
+                .HasConstraintName("FK__sharing__notaid__6383C8BA");
 
             entity.HasOne(d => d.Usuario).WithMany(p => p.Sharings)
                 .HasForeignKey(d => d.Usuarioid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__sharing__usuario__5165187F");
+                .HasConstraintName("FK__sharing__usuario__6477ECF3");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.Iduser).HasName("PK__usuario__2A50F1CE81888EBC");
+            entity.HasKey(e => e.Iduser).HasName("PK__usuario__2A50F1CEFC49E73D");
 
-            entity.ToTable("usuario");
+            entity.ToTable("usuario", tb => tb.HasTrigger("trg_audit_usuario"));
 
-            entity.HasIndex(e => e.Email, "UQ__usuario__AB6E61644048B066").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__usuario__AB6E61640B21A809").IsUnique();
 
             entity.Property(e => e.Iduser).HasColumnName("iduser");
             entity.Property(e => e.Email)
