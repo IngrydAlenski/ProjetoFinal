@@ -10,7 +10,7 @@ namespace APIProjetoFinal.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-  
+    [Authorize]
     public class CategoriaController : ControllerBase
     {
         private ICategoriaRepository _categoriaRepository;
@@ -20,7 +20,6 @@ namespace APIProjetoFinal.Controllers
         }
         
         [HttpGet("/ListarTodasCategorias")]
-        [Authorize]
         public IActionResult ListarTodos()
         {
             return Ok(_categoriaRepository.ListarTodos());

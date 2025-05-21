@@ -11,8 +11,8 @@ public partial class Categorianota
     public int Notaid { get; set; }
 
     public int Idcategoria { get; set; }
-    [JsonIgnore]
+    //[JsonIgnore]
     public virtual Categoria IdcategoriaNavigation { get; set; } = null!;
-    [JsonIgnore]
+    //[JsonIgnore]
     public virtual Nota Nota { get; set; } = null!;
 }
