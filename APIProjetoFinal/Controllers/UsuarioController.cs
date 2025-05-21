@@ -21,9 +21,9 @@ namespace APIProjetoFinal.Controllers
                 _repository = repository;
             }
             [HttpPost]
-            public IActionResult Cadastrar(Usuario usuario)
+            public IActionResult Cadastrar(UsuarioDTO usuarioDTO)
             {
-                _repository.Cadastrar(usuario);
+                _repository.Cadastrar(usuarioDTO);
                 return Created();
 
             }
