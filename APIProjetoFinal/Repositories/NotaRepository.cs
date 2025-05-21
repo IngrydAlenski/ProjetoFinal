@@ -1,6 +1,7 @@
 ﻿using APIProjetoFinal.Context;
 using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
+using APIProjetoFinal.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace APIProjetoFinal.Repositories
@@ -38,13 +39,27 @@ namespace APIProjetoFinal.Repositories
             throw new NotImplementedException();
         }
 
-        public List<Nota> ListarTodos()
+        public List<NotaViewModel> ListarTodos()
         {
             //return _context.Notas.ToList();
 
             return _context.Notas
                .Include(p => p.Categorianota) // quando incuir os itens do pedidos, precisa usar o ThenInclude, desta forma vai incluir os produtos relacionados ao itens produtos
-               .ThenInclude(p => p.IdcategoriaNavigation)
+               .ThenInclude(pa => pa.IdcategoriaNavigation)
+               .Select(a => new NotaViewModel
+               {
+                   Idnota = a.Idnota,
+                   Titulonota = a.Titulonota,
+                   Descricao = a.Descricao,
+                   Datanota = a.Datanota,
+                   Atualizacaonota = a.Atualizacaonota,
+                   Categorias = a.Categorianota.Select(pa => new CategoriaViewModel
+                   {
+                       Idcategoria = pa.IdcategoriaNavigation.Idcategoria,
+                       Nomecategoria = pa.IdcategoriaNavigation.Nomecategoria
+                   }).ToList()
+
+               }) //o select vai permitir selecionar apenas os campos que eu quero apresentar no response da a api
                .ToList();
         }
     }
