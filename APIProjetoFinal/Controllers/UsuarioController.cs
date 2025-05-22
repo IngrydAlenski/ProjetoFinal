@@ -5,6 +5,7 @@ using APIProjetoFinal.Repositories;
 using APIProjetoFinal.Serveces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace APIProjetoFinal.Controllers
@@ -21,9 +22,9 @@ namespace APIProjetoFinal.Controllers
                 _repository = repository;
             }
             [HttpPost]
-            public IActionResult Cadastrar(Usuario usuario)
+            public IActionResult Cadastrar(UsuarioDTO usuarioDTO)
             {
-                _repository.Cadastrar(usuario);
+                _repository.Cadastrar(usuarioDTO);
                 return Created();
 
             }
@@ -62,6 +63,10 @@ namespace APIProjetoFinal.Controllers
 
 
         [HttpPost("Login")]
+        //[SwaggerOperation(
+       //  Summary = "Arquiva uma anotacao",
+       //Description = "Este endpoint arquiva uma anotacao com base no id fornecido " 
+      //)]
         public IActionResult Login(LoginDTO loginDTO)
         {
             var cliente = _repository.BuscarPorEmailSenha(loginDTO.Senha, loginDTO.Email);

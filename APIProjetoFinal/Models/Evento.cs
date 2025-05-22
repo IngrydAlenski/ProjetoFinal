@@ -10,4 +10,6 @@ public partial class Evento
     public string Tipoevento { get; set; } = null!;
 
     public string Descricaoevento { get; set; } = null!;
+
+    public virtual ICollection<Calendario> Calendarios { get; set; } = new List<Calendario>();
 }

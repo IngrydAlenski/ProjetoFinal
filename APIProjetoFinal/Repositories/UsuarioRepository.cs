@@ -1,4 +1,5 @@
 ﻿using APIProjetoFinal.Context;
+using APIProjetoFinal.DTO;
 using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 using APIProjetoFinal.Serveces;
@@ -45,15 +46,15 @@ namespace APIProjetoFinal.Repositories
             return null;
         }
 
-        public void Cadastrar(Usuario usuario)
+        public void Cadastrar(UsuarioDTO usuarioDTO)
         {
             var passwordService = new PasswordService();
 
             Usuario usuario1 = new Usuario
             {
-                Nomeuser = usuario.Nomeuser,
-                Email = usuario.Email,
-                Senha = usuario.Senha
+                Nomeuser = usuarioDTO.Nomeuser,
+                Email = usuarioDTO.Email,
+                Senha = usuarioDTO.Senha
             };
             usuario1.Senha = passwordService.HashPassword(usuario1);
 
