@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 using Microsoft.AspNetCore.Authorization;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace APIProjetoFinal.Controllers
 {
@@ -76,6 +77,11 @@ namespace APIProjetoFinal.Controllers
         }
 
         [HttpPost("/CadastrarCategoria/")]
+        [SwaggerOperation(
+            Summary = "Este metodos cadastra uma categoria",
+            Description = "Este endpoint e responsavel por fazer o cadastro da categoria"
+            
+        )]
         public IActionResult CadastrarPedido(Categoria categoria)
         {
             _categoriaRepository.Cadastrar(categoria);

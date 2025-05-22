@@ -1,4 +1,5 @@
 ﻿using APIProjetoFinal.Context;
+using APIProjetoFinal.DTO;
 using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 using APIProjetoFinal.ViewModels;
@@ -8,12 +9,17 @@ namespace APIProjetoFinal.Repositories
 {
     public class NotaRepository : INotaRepository
     {
-        private readonly Dbg5Context _context;
 
-        public NotaRepository(Dbg5Context context)
+        private readonly Dbg5Context _categoriaRepository;
+
+
+
+        public CategoriaRepository(Dbg5Context context)
         {
-            _context = context;
+            _categoriaRepository = context;
         }
+
+
         public void Atualizar(int id, Nota nota)
         {
             throw new NotImplementedException();
@@ -29,9 +35,31 @@ namespace APIProjetoFinal.Repositories
             return _context.Notas.FirstOrDefault(n => n.Iduser == id);
         }
 
-        public void Cadastrar(Nota nota)
+        public CadastroNotaDTO? Cadastrar(CadastroNotaDTO notaDTO)
         {
-            throw new NotImplementedException();
+            //1- Percorrer a Lista de Categorias
+            //1.1- Verificar se a Categoria ja existe?
+            //1.2-Se existir, precisa pegar o Id da Categoria
+            //1.2-Se nao existir, precisa cadastrar a categoria e pegar o id
+
+            List<int> idCategorias = new List<int>(); //criando uma lista para guardar os ids
+
+            foreach (int item in notaDTO.Categorias) 
+            {
+                var categoria = _categoriaRepository.BuscarPorNome(notaDTO.Categorias); //verificando se a categoria existe
+
+                if (categoria == null)
+                {
+                    // TODO: Cadastrar a categoria
+                }
+
+                idCategorias.Add(categoria.I);
+
+            
+            }
+
+
+            return null;
         }
 
         public void Deletar(int id)
@@ -62,5 +90,19 @@ namespace APIProjetoFinal.Repositories
                }) //o select vai permitir selecionar apenas os campos que eu quero apresentar no response da a api
                .ToList();
         }
+
+
+        //public Nota? ArquivarAnotacao(int id)
+        //{
+        //    //1- Encontrar a anotacao
+        //    var nota = _context.Notas.Find(id);
+
+        //    if (nota is null) return null;
+
+        //    //2- Trocar o status de arquivada
+        //    nota.Arquivada = !nota.Arquivada;
+
+        //    _context.SaveChanges();
+        //}
     }
 }
