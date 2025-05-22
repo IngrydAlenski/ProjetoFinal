@@ -9,16 +9,14 @@ namespace APIProjetoFinal.Repositories
 {
     public class NotaRepository : INotaRepository
     {
-
-        private readonly Dbg5Context _categoriaRepository;
-
-
-
-        public CategoriaRepository(Dbg5Context context)
+        private readonly Dbg5Context _context;
+        
+        private CategoriaRepository categoriaRepository;
+        
+        public NotaRepository(Dbg5Context context)
         {
-            _categoriaRepository = context;
-        }
-
+            categoriaRepository = new CategoriaRepository(context);
+        } 
 
         public void Atualizar(int id, Nota nota)
         {
@@ -44,18 +42,22 @@ namespace APIProjetoFinal.Repositories
 
             List<int> idCategorias = new List<int>(); //criando uma lista para guardar os ids
 
-            foreach (int item in notaDTO.Categorias) 
+            foreach (string item in notaDTO.Categorias) 
             {
-                var categoria = _categoriaRepository.BuscarPorNome(notaDTO.Categorias); //verificando se a categoria existe
+                var categoria = categoriaRepository.BuscarPorNome(item); //verificando se a categoria existe
 
                 if (categoria == null)
                 {
+                    categoria = new Categoria
+                    {
+                        Nomecategoria = item
+                    };
                     // TODO: Cadastrar a categoria
+                    _context.Add(categoria); 
+                    _context.SaveChanges();
+
                 }
-
-                idCategorias.Add(categoria.I);
-
-            
+                idCategorias.Add(categoria.Idcategoria);
             }
 
 
