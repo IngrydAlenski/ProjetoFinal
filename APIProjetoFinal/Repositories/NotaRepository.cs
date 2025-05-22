@@ -1,4 +1,5 @@
 ﻿using APIProjetoFinal.Context;
+using APIProjetoFinal.DTO;
 using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 using APIProjetoFinal.ViewModels;
@@ -33,6 +34,20 @@ namespace APIProjetoFinal.Repositories
         {
             throw new NotImplementedException();
         }
+
+        //  public CadastrarNotaDTO? CadastrarNotaDTO (CadastrarNotaDTO notaDTO)
+        //{
+        //1- Percorrer a lista de notas 
+        //1.1- Essa nota ja existe?
+        //1.2- Se a nota ja existe eu tenho que pegar o id dela 
+        //1.2- Se nao existe eu vou cadastrar a nota e pegar o id dela 
+
+        //List<int>idNotas = new List<int>();
+        //foreach (var item in notaDTO.Notas)
+        //{
+
+        // }
+        //}
 
         public void Deletar(int id)
         {
