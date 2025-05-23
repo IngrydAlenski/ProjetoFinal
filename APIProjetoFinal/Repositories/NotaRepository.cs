@@ -44,34 +44,38 @@ namespace APIProjetoFinal.Repositories
             return _context.Notas.FirstOrDefault(n => n.Iduser == id);
         }
 
+        //public void Cadastrar(CadastroNotaDTO notaDTO)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
         public CadastroNotaDTO? Cadastrar(CadastroNotaDTO notaDTO)
         {
-            //1- Percorrer a Lista de Categorias
-            //1.1- Verificar se a Categoria ja existe?
-            //1.2-Se existir, precisa pegar o Id da Categoria
-            //1.2-Se nao existir, precisa cadastrar a categoria e pegar o id
+        //    1 - Percorrer a Lista de Categorias
+        //1.1 - Verificar se a Categoria ja existe ?
+        //1.2 - Se existir, precisa pegar o Id da Categoria
+        //1.2 - Se nao existir, precisa cadastrar a categoria e pegar o id
 
-            List<int> idCategorias = new List<int>(); //criando uma lista para guardar os ids das categorias
+         List<int> idCategorias = new List<int>(); //criando uma lista para guardar os ids
 
-            //percorrer a lista de categorias
-            foreach (string item in notaDTO.Categorias) 
+            foreach (string item in notaDTO.Categorias)
             {
                 var categoria = _categoriaRepository.BuscarPorNome(item); //verificando se a categoria existe
 
-                if (categoria == null) //se a categoria for nulla vou precisar cadastrar
+                if (categoria == null)
                 {
-                    categoria = new Categoria 
+                    categoria = new Categoria
                     {
                         Nomecategoria = item,
                         Atualizacaodata = DateTime.Now,
                         Criacaodata = DateTime.Now
                         
                     };
-                    //Cadastrar a categoria
-                    _context.Add(categoria); 
+                    // TODO: Cadastrar a categoria
+                    _context.Add(categoria);
                     _context.SaveChanges();
+
                 }
-               
                 idCategorias.Add(categoria.Idcategoria);
             }
 
@@ -84,6 +88,8 @@ namespace APIProjetoFinal.Repositories
                 Atualizacaonota = DateTime.Now,
                 //TODO: implementar o campo de status da nota 
                 Iduser = notaDTO.Iduser,
+               // Imagenote = null,
+                //Statusnote = 
             };
 
             _context.Add(novaNota);
@@ -95,8 +101,10 @@ namespace APIProjetoFinal.Repositories
                 var categoriaNota = new Categorianota
                 {
                     Idcategoria = novaNota.Idnota,
-                    Idnotacategoria = item
+                    Notaid = item
                 };
+                _context.Add(categoriaNota);
+                _context.SaveChanges();
             }
 
             return notaDTO;

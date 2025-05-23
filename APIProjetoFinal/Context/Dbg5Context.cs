@@ -39,7 +39,6 @@ public partial class Dbg5Context : DbContext
         optionsBuilder.UseSqlServer(con);
 
     }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<AuditoriaGeral>(entity =>
@@ -164,6 +163,10 @@ public partial class Dbg5Context : DbContext
                 .HasColumnType("text")
                 .HasColumnName("descricao");
             entity.Property(e => e.Iduser).HasColumnName("iduser");
+            entity.Property(e => e.Imagenote)
+                .IsUnicode(false)
+                .HasColumnName("imagenote");
+            entity.Property(e => e.Statusnote).HasColumnName("statusnote");
             entity.Property(e => e.Titulonota)
                 .HasColumnType("text")
                 .HasColumnName("titulonota");
@@ -189,13 +192,7 @@ public partial class Dbg5Context : DbContext
 
             entity.HasOne(d => d.Nota).WithMany(p => p.Sharings)
                 .HasForeignKey(d => d.Notaid)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__sharing__notaid__6383C8BA");
-
-            entity.HasOne(d => d.Usuario).WithMany(p => p.Sharings)
-                .HasForeignKey(d => d.Usuarioid)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__sharing__usuario__6477ECF3");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
