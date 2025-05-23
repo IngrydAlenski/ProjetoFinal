@@ -14,6 +14,4 @@ public partial class Sharing
     public string Permissao { get; set; } = null!;
 
     public virtual Nota Nota { get; set; } = null!;
-
-    public virtual Usuario Usuario { get; set; } = null!;
 }

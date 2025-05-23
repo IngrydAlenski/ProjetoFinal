@@ -17,6 +17,10 @@ public partial class Nota
 
     public DateTime Atualizacaonota { get; set; }
 
+    public string? Imagenote { get; set; }
+
+    public bool? Statusnote { get; set; }
+
     public virtual ICollection<Categorianota> Categorianota { get; set; } = new List<Categorianota>();
 
     public virtual Usuario IduserNavigation { get; set; } = null!;

@@ -33,36 +33,41 @@ namespace APIProjetoFinal.Repositories
             return _context.Notas.FirstOrDefault(n => n.Iduser == id);
         }
 
-        public CadastroNotaDTO? Cadastrar(CadastroNotaDTO notaDTO)
+        public void Cadastrar(CadastroNotaDTO notaDTO)
         {
-            //1- Percorrer a Lista de Categorias
-            //1.1- Verificar se a Categoria ja existe?
-            //1.2-Se existir, precisa pegar o Id da Categoria
-            //1.2-Se nao existir, precisa cadastrar a categoria e pegar o id
-
-            List<int> idCategorias = new List<int>(); //criando uma lista para guardar os ids
-
-            foreach (string item in notaDTO.Categorias) 
-            {
-                var categoria = categoriaRepository.BuscarPorNome(item); //verificando se a categoria existe
-
-                if (categoria == null)
-                {
-                    categoria = new Categoria
-                    {
-                        Nomecategoria = item
-                    };
-                    // TODO: Cadastrar a categoria
-                    _context.Add(categoria); 
-                    _context.SaveChanges();
-
-                }
-                idCategorias.Add(categoria.Idcategoria);
-            }
-
-
-            return null;
+            throw new NotImplementedException();
         }
+
+        //public CadastroNotaDTO? Cadastrar(CadastroNotaDTO notaDTO)
+        //  {
+        //1- Percorrer a Lista de Categorias
+        //1.1- Verificar se a Categoria ja existe?
+        //1.2-Se existir, precisa pegar o Id da Categoria
+        //1.2-Se nao existir, precisa cadastrar a categoria e pegar o id
+
+        // List<int> idCategorias = new List<int>(); //criando uma lista para guardar os ids
+
+        //    foreach (string item in notaDTO.Categorias) 
+        //    {
+        //        var categoria = categoriaRepository.BuscarPorNome(item); //verificando se a categoria existe
+
+        //        if (categoria == null)
+        //        {
+        //            categoria = new Categoria
+        //            {
+        //                Nomecategoria = item
+        //            };
+        //            // TODO: Cadastrar a categoria
+        //            _context.Add(categoria); 
+        //            _context.SaveChanges();
+
+        //        }
+        //        idCategorias.Add(categoria.Idcategoria);
+        //    }
+
+
+        //    return null;
+        //}
 
         //  public CadastrarNotaDTO? CadastrarNotaDTO (CadastrarNotaDTO notaDTO)
         //{
