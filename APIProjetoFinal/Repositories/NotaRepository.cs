@@ -9,14 +9,25 @@ namespace APIProjetoFinal.Repositories
 {
     public class NotaRepository : INotaRepository
     {
-        private readonly Dbg5Context _context;
-        
-        private CategoriaRepository categoriaRepository;
-        
-        public NotaRepository(Dbg5Context context)
+
+        private ICategoriaRepository _categoriaRepository;
+        private Dbg5Context _context;
+
+        public NotaRepository(Dbg5Context context, ICategoriaRepository categoriaRepository) //: base(context)
         {
-            categoriaRepository = new CategoriaRepository(context);
-        } 
+            _categoriaRepository = categoriaRepository;
+            _context = context;
+        }
+
+
+       // private readonly Dbg5Context _context;
+        
+       // private CategoriaRepository categoriaRepository;
+        
+       // public NotaRepository(Dbg5Context context)
+       // {
+       //     categoriaRepository = new CategoriaRepository(context);
+       // } 
 
         public void Atualizar(int id, Nota nota)
         {
@@ -40,28 +51,55 @@ namespace APIProjetoFinal.Repositories
             //1.2-Se existir, precisa pegar o Id da Categoria
             //1.2-Se nao existir, precisa cadastrar a categoria e pegar o id
 
-            List<int> idCategorias = new List<int>(); //criando uma lista para guardar os ids
+            List<int> idCategorias = new List<int>(); //criando uma lista para guardar os ids das categorias
 
+            //percorrer a lista de categorias
             foreach (string item in notaDTO.Categorias) 
             {
-                var categoria = categoriaRepository.BuscarPorNome(item); //verificando se a categoria existe
+                var categoria = _categoriaRepository.BuscarPorNome(item); //verificando se a categoria existe
 
-                if (categoria == null)
+                if (categoria == null) //se a categoria for nulla vou precisar cadastrar
                 {
-                    categoria = new Categoria
+                    categoria = new Categoria 
                     {
-                        Nomecategoria = item
+                        Nomecategoria = item,
+                        Atualizacaodata = DateTime.Now,
+                        Criacaodata = DateTime.Now
+                        
                     };
-                    // TODO: Cadastrar a categoria
+                    //Cadastrar a categoria
                     _context.Add(categoria); 
                     _context.SaveChanges();
-
                 }
+               
                 idCategorias.Add(categoria.Idcategoria);
             }
 
+            //Cadastrar Nota
+            var novaNota = new Nota
+            {
+                Titulonota = notaDTO.Titulonota,
+                Descricao = notaDTO.Descricao,
+                Datanota = DateTime.Now,
+                Atualizacaonota = DateTime.Now,
+                //TODO: implementar o campo de status da nota 
+                Iduser = notaDTO.Iduser,
+            };
 
-            return null;
+            _context.Add(novaNota);
+            _context.SaveChanges();
+
+            //Cadastrar a Categorianota
+            foreach (var item in idCategorias)
+            {
+                var categoriaNota = new Categorianota
+                {
+                    Idcategoria = novaNota.Idnota,
+                    Idnotacategoria = item
+                };
+            }
+
+            return notaDTO;
         }
 
         //  public CadastrarNotaDTO? CadastrarNotaDTO (CadastrarNotaDTO notaDTO)

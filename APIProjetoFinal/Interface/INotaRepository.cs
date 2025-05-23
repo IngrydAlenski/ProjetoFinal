@@ -11,7 +11,7 @@ namespace APIProjetoFinal.Interface
         Nota BuscarNotaPorData(DateTime date);
         void Atualizar(int id, Nota nota);
         void Deletar(int id);
-        void Cadastrar(CadastroNotaDTO notaDTO);
+        CadastroNotaDTO Cadastrar(CadastroNotaDTO notaDTO);
 
     }
 }

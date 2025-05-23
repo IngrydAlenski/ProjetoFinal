@@ -1,4 +1,5 @@
-﻿using APIProjetoFinal.Interface;
+﻿using APIProjetoFinal.DTO;
+using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 using APIProjetoFinal.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -57,6 +58,21 @@ namespace APIProjetoFinal.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult Cadastrar(CadastroNotaDTO notaDTO)
+        {
+            //var validacao = new AnotacaoValidator().Validate(anotacao);
+
+            //if (!validacao.IsValid)
+            //{
+            //    var erros = validacao.Errors.Select(e => e.ErrorMessage).ToList();
+            //    return BadRequest(validacao.Errors);
+            //}
+
+            _notaRepository.Cadastrar(notaDTO);
+
+            return Created();
+        }
 
         //[HttpPut("/AtualizarCategoria/{id}")]
         //public IActionResult Atualizar(int id, Categoria categ)
