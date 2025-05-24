@@ -1,4 +1,5 @@
-﻿using APIProjetoFinal.Models;
+﻿using APIProjetoFinal.DTO;
+using APIProjetoFinal.Models;
 
 namespace APIProjetoFinal.Interface
 {
@@ -6,9 +7,9 @@ namespace APIProjetoFinal.Interface
     {
         List<Categoria> ListarTodos();
         Categoria BuscarPorNome(string nome);
-        void Atualizar (int id, Categoria categoria);
+        void Atualizar (int id, CategoriaDTO categoria);
         void Deletar(int id);
-        void Cadastrar(Categoria categoria);
+        void Cadastrar(CategoriaDTO categoria);
 
 
     }

@@ -1,4 +1,5 @@
 ﻿using APIProjetoFinal.Context;
+using APIProjetoFinal.DTO;
 using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 
@@ -12,7 +13,7 @@ namespace APIProjetoFinal.Repositories
         {
             _context = context;
         }
-        public void Atualizar(int id, Categoria categoria)
+        public void Atualizar(int id, CategoriaDTO categoria)
         {
             Categoria categoriaEncontrado = _context.Categorias.Find(id);
 
@@ -23,7 +24,7 @@ namespace APIProjetoFinal.Repositories
 
             categoriaEncontrado.Nomecategoria = categoria.Nomecategoria;
             //categoriaEncontrado.Criacaodata = categoria.Criacaodata;
-            categoriaEncontrado.Atualizacaodata = categoria.Atualizacaodata;
+            categoriaEncontrado.Atualizacaodata = DateTime.Now;
 
             _context.SaveChanges();
 
@@ -53,14 +54,14 @@ namespace APIProjetoFinal.Repositories
             return _context.Categorias.ToList();
         }
 
-        public void Cadastrar(Categoria categoria)
+        public void Cadastrar(CategoriaDTO categoria)
         {
             
             Categoria categoriCadastro = new Categoria 
             {
-
                 Nomecategoria = categoria.Nomecategoria, 
-                Criacaodata = categoria.Criacaodata
+                Criacaodata = DateTime.Now,
+                Atualizacaodata = DateTime.Now
             };
             _context.Categorias.Add(categoriCadastro);
             _context.SaveChanges();

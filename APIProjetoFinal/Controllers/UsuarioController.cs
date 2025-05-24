@@ -22,7 +22,7 @@ namespace APIProjetoFinal.Controllers
             {
                 _repository = repository;
             }
-            [HttpPost]
+            [HttpPost("/CadastrarUmUsuario")]
             public IActionResult Cadastrar(UsuarioDTO usuarioDTO)
             {
                 _repository.Cadastrar(usuarioDTO);
@@ -52,24 +52,15 @@ namespace APIProjetoFinal.Controllers
         {
             try
             {
-
                 _repository.Atualizar(id, usuario);
-
                 return Ok(usuario);
             }
-
             catch (Exception ex)
             {
                 return NotFound("Usuario não encontrado");
             }
         }
-
-
-        [HttpPost("Login")]
-        //[SwaggerOperation(
-       //  Summary = "Arquiva uma anotacao",
-       //Description = "Este endpoint arquiva uma anotacao com base no id fornecido " 
-      //)]
+        [HttpPost("/LoginDeUsuario\"")]
         public IActionResult Login(LoginDTO loginDTO)
         {
             var usuario = _repository.BuscarPorEmailSenha(loginDTO.Senha, loginDTO.Email);
@@ -78,18 +69,17 @@ namespace APIProjetoFinal.Controllers
             {
                 return Unauthorized("Email ou Senha invalidos!");
             }
-
             var tokenService = new TokenService();
             var token = tokenService.GenerateToken(usuario.Email);
-
-
             return Ok(new
             {
                 token,
-                Id = usuario.Iduser,
-                Nome = usuario.Nomeuser,
-                Email = usuario.Email
-            });
+                usuario.Iduser,
+                usuario.Nomeuser,
+                usuario.Email
+            }
+            );
+          
         }
     }
     }
