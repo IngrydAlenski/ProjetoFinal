@@ -16,6 +16,8 @@ namespace APIProjetoFinal.ViewModels
 
         public DateTime Atualizacaonota { get; set; }
 
+        public bool? Statusnote { get; set; } = null!;
+
         public List<CategoriaViewModel> Categorias { get; set; }
     }
 }

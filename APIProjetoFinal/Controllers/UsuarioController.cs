@@ -3,6 +3,7 @@ using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 using APIProjetoFinal.Repositories;
 using APIProjetoFinal.Serveces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -29,6 +30,7 @@ namespace APIProjetoFinal.Controllers
 
             }
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult DeletarUsuario(int id)
         {
             try
@@ -45,6 +47,7 @@ namespace APIProjetoFinal.Controllers
             }
         }
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult AtualizarUsuario(int id, Usuario usuario)
         {
             try
@@ -69,7 +72,7 @@ namespace APIProjetoFinal.Controllers
       //)]
         public IActionResult Login(LoginDTO loginDTO)
         {
-            var cliente = _repository.BuscarPorEmailSenha(loginDTO.Senha, loginDTO.Email);
+            var usuario = _repository.BuscarPorEmailSenha(loginDTO.Senha, loginDTO.Email);
 
             if (loginDTO == null)
             {
@@ -77,10 +80,16 @@ namespace APIProjetoFinal.Controllers
             }
 
             var tokenService = new TokenService();
-            var token = tokenService.GenerateToken(cliente.Email);
+            var token = tokenService.GenerateToken(usuario.Email);
 
 
-            return Ok(token);
+            return Ok(new
+            {
+                token,
+                Id = usuario.Iduser,
+                Nome = usuario.Nomeuser,
+                Email = usuario.Email
+            });
         }
     }
     }

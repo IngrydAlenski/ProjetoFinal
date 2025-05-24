@@ -9,9 +9,10 @@ namespace APIProjetoFinal.Interface
         List<NotaViewModel> ListarTodos();
         Nota BuscarPorIdUsuario(int id);
         Nota BuscarNotaPorData(DateTime date);
-        void Atualizar(int id, Nota nota);
+        void Atualizar(int id, AtualizarNotaDTO nota);
         void Deletar(int id);
         CadastroNotaDTO Cadastrar(CadastroNotaDTO notaDTO);
+        Nota? ArquivarNota(int id); 
 
     }
 }

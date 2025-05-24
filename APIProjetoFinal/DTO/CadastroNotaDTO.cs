@@ -13,7 +13,7 @@ namespace APIProjetoFinal.DTO
 
         public string Descricao { get; set; } = null!;
 
-        //public 
+        public bool? Statusnote { get; set; }
 
         //public DateTime Atualizacaonota { get; set; }
         public List<string> Categorias { get; set; }//Lista par retornar as categorias

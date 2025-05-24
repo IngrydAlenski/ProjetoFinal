@@ -19,19 +19,21 @@ namespace APIProjetoFinal.Repositories
             _context = context;
         }
 
-
-       // private readonly Dbg5Context _context;
-        
-       // private CategoriaRepository categoriaRepository;
-        
-       // public NotaRepository(Dbg5Context context)
-       // {
-       //     categoriaRepository = new CategoriaRepository(context);
-       // } 
-
-        public void Atualizar(int id, Nota nota)
+        public void Atualizar(int id, AtualizarNotaDTO nota)
         {
-            throw new NotImplementedException();
+            var notaAntiga = _context.Notas.Find(id);
+
+            if (notaAntiga == null) 
+            {
+                throw new ArgumentNullException("Nota nao encontrado");
+            }
+
+            notaAntiga.Titulonota = nota.Titulonota;
+            notaAntiga.Descricao = nota.Descricao;
+            //notaAntiga.Statusnote = nota.Statusnote;
+            notaAntiga.Atualizacaonota = DateTime.Now;
+
+            _context.SaveChanges();
         }
 
         public Nota BuscarNotaPorData(DateTime date)
@@ -44,14 +46,10 @@ namespace APIProjetoFinal.Repositories
             return _context.Notas.FirstOrDefault(n => n.Iduser == id);
         }
 
-        //public void Cadastrar(CadastroNotaDTO notaDTO)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         public CadastroNotaDTO? Cadastrar(CadastroNotaDTO notaDTO)
         {
-        //    1 - Percorrer a Lista de Categorias
+        // 1 - Percorrer a Lista de Categorias
         //1.1 - Verificar se a Categoria ja existe ?
         //1.2 - Se existir, precisa pegar o Id da Categoria
         //1.2 - Se nao existir, precisa cadastrar a categoria e pegar o id
@@ -89,7 +87,7 @@ namespace APIProjetoFinal.Repositories
                 //TODO: implementar o campo de status da nota 
                 Iduser = notaDTO.Iduser,
                // Imagenote = null,
-                //Statusnote = 
+                Statusnote = false
             };
 
             _context.Add(novaNota);
@@ -110,19 +108,6 @@ namespace APIProjetoFinal.Repositories
             return notaDTO;
         }
 
-        //  public CadastrarNotaDTO? CadastrarNotaDTO (CadastrarNotaDTO notaDTO)
-        //{
-        //1- Percorrer a lista de notas 
-        //1.1- Essa nota ja existe?
-        //1.2- Se a nota ja existe eu tenho que pegar o id dela 
-        //1.2- Se nao existe eu vou cadastrar a nota e pegar o id dela 
-
-        //List<int>idNotas = new List<int>();
-        //foreach (var item in notaDTO.Notas)
-        //{
-
-        // }
-        //}
 
         public void Deletar(int id)
         {
@@ -138,11 +123,13 @@ namespace APIProjetoFinal.Repositories
                .ThenInclude(pa => pa.IdcategoriaNavigation)
                .Select(a => new NotaViewModel
                {
+                   Iduser = a.Iduser,
                    Idnota = a.Idnota,
                    Titulonota = a.Titulonota,
                    Descricao = a.Descricao,
                    Datanota = a.Datanota,
                    Atualizacaonota = a.Atualizacaonota,
+                   Statusnote = a.Statusnote,
                    Categorias = a.Categorianota.Select(pa => new CategoriaViewModel
                    {
                        Idcategoria = pa.IdcategoriaNavigation.Idcategoria,
@@ -154,17 +141,17 @@ namespace APIProjetoFinal.Repositories
         }
 
 
-        //public Nota? ArquivarAnotacao(int id)
-        //{
-        //    //1- Encontrar a anotacao
-        //    var nota = _context.Notas.Find(id);
+        public Nota? ArquivarNota(int id)
+        {
+            var nota = _context.Notas.Find(id);
 
-        //    if (nota is null) return null;
+            if (nota == null) return null;
 
-        //    //2- Trocar o status de arquivada
-        //    nota.Arquivada = !nota.Arquivada;
+            nota.Statusnote = !nota.Statusnote;
 
-        //    _context.SaveChanges();
-        //}
+            _context.SaveChanges();
+
+            return nota;
+        }
     }
 }

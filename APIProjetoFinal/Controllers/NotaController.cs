@@ -2,6 +2,7 @@
 using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 using APIProjetoFinal.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace APIProjetoFinal.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class NotaController : ControllerBase
     {
         private INotaRepository _notaRepository;
@@ -61,35 +63,28 @@ namespace APIProjetoFinal.Controllers
         [HttpPost]
         public IActionResult Cadastrar(CadastroNotaDTO notaDTO)
         {
-            //var validacao = new AnotacaoValidator().Validate(anotacao);
-
-            //if (!validacao.IsValid)
-            //{
-            //    var erros = validacao.Errors.Select(e => e.ErrorMessage).ToList();
-            //    return BadRequest(validacao.Errors);
-            //}
-
             _notaRepository.Cadastrar(notaDTO);
 
             return Created();
         }
 
-        //[HttpPut("/AtualizarCategoria/{id}")]
-        //public IActionResult Atualizar(int id, Categoria categ)
-        //{
-        //    try
-        //    {
-
-        //        _categoriaRepository.Atualizar(id, categ);
-
-        //        return Ok(categ);
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        return NotFound("Categoria não encontrada");
-        //    }
-        //}
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(int id, AtualizarNotaDTO nota)
+        {
+            try //Se encontrar o produto
+            {
+                //_produtoRepository (acessar o context/banco de dados)
+                //Editar (id) editar o produto pelo id
+                _notaRepository.Atualizar(id, nota);
+                // Retornar 200
+                return Ok(nota);
+            }
+            //Caso dar erro ou nao encontrao o produto
+            catch (Exception ex)
+            {
+                return NotFound("Nota nao encontrado");
+            }
+        }
 
         //[HttpDelete("/DeletarCategoria/{id}")]
         //public IActionResult Deletar(int id)
