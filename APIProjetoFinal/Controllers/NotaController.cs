@@ -4,6 +4,7 @@ using APIProjetoFinal.Models;
 using APIProjetoFinal.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace APIProjetoFinal.Controllers
 {
@@ -16,64 +17,43 @@ namespace APIProjetoFinal.Controllers
         {
             _notaRepository = notaRepository;
         }
-
-
         [HttpGet("/ListarTodasNotas")]
         public IActionResult ListarTodos()
         {
             return Ok(_notaRepository.ListarTodos());
         }
-
         [HttpGet("/BuscarPorIdUsuario/{id}")]
         public IActionResult BuscarPorIdUsuario(int id)
         {
             Nota nota = _notaRepository.BuscarPorIdUsuario(id);
-
             if (nota == null)
             {
                 return NotFound();
-
             }
             else
             {
                 return Ok(nota);
             }
-
         }
-
         [HttpGet("/BuscarNotaPorData/{date}")]
         public IActionResult BuscarNotaPorData(DateTime date)
         {
             Nota nota = _notaRepository.BuscarNotaPorData(date);
-
             if (nota == null)
             {
                 return NotFound();
-
             }
             else
             {
                 return Ok(nota);
             }
-
         }
-
-        [HttpPost]
+        [HttpPost("/CadastrarNota/{date}")]
         public IActionResult Cadastrar(CadastroNotaDTO notaDTO)
         {
-            //var validacao = new AnotacaoValidator().Validate(anotacao);
-
-            //if (!validacao.IsValid)
-            //{
-            //    var erros = validacao.Errors.Select(e => e.ErrorMessage).ToList();
-            //    return BadRequest(validacao.Errors);
-            //}
-
             _notaRepository.Cadastrar(notaDTO);
-
             return Created();
         }
-
         //[HttpPut("/AtualizarCategoria/{id}")]
         //public IActionResult Atualizar(int id, Categoria categ)
         //{

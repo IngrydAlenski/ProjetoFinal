@@ -21,14 +21,14 @@ namespace APIProjetoFinal.Controllers
             {
                 _repository = repository;
             }
-            [HttpPost]
+            [HttpPost("/CadastrarUmUsuario")]
             public IActionResult Cadastrar(UsuarioDTO usuarioDTO)
             {
                 _repository.Cadastrar(usuarioDTO);
                 return Created();
 
             }
-        [HttpDelete("{id}")]
+        [HttpDelete("/DeletarUsuario\"{id}")]
         public IActionResult DeletarUsuario(int id)
         {
             try
@@ -44,43 +44,38 @@ namespace APIProjetoFinal.Controllers
                 return NotFound("Usuario não encontrado");
             }
         }
-        [HttpPut("{id}")]
+        [HttpPut("/AtualizarUsuario\"{id}")]
         public IActionResult AtualizarUsuario(int id, Usuario usuario)
         {
             try
             {
-
                 _repository.Atualizar(id, usuario);
-
                 return Ok(usuario);
             }
-
             catch (Exception ex)
             {
                 return NotFound("Usuario não encontrado");
             }
         }
-
-
-        [HttpPost("Login")]
-        //[SwaggerOperation(
-       //  Summary = "Arquiva uma anotacao",
-       //Description = "Este endpoint arquiva uma anotacao com base no id fornecido " 
-      //)]
+        [HttpPost("/LoginDeUsuario\"")]
         public IActionResult Login(LoginDTO loginDTO)
         {
-            var cliente = _repository.BuscarPorEmailSenha(loginDTO.Senha, loginDTO.Email);
-
+            var usuario = _repository.BuscarPorEmailSenha(loginDTO.Senha, loginDTO.Email);
             if (loginDTO == null)
             {
                 return Unauthorized("Email ou Senha invalidos!");
             }
-
             var tokenService = new TokenService();
-            var token = tokenService.GenerateToken(cliente.Email);
-
-
-            return Ok(token);
+            var token = tokenService.GenerateToken(usuario.Email);
+            return Ok(new
+            {
+                token,
+                usuario.Iduser,
+                usuario.Nomeuser,
+                usuario.Email
+            }
+            );
+          
         }
     }
     }

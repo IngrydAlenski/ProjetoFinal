@@ -6,6 +6,7 @@ using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Swashbuckle.AspNetCore.Annotations;
+using APIProjetoFinal.DTO;
 
 namespace APIProjetoFinal.Controllers
 {
@@ -25,64 +26,48 @@ namespace APIProjetoFinal.Controllers
         {
             return Ok(_categoriaRepository.ListarTodos());
         }
-
         [HttpGet("/BuscarCategoriaPorNome/{nome}")]
         public IActionResult BuscarPorNome(string nome)
         {
             Categoria categoria = _categoriaRepository.BuscarPorNome(nome);
-
             if (categoria == null)
             {
                 return NotFound();
-
             }
             else
             {
                 return Ok(categoria);
             }
-
         }
 
         [HttpPut("/AtualizarCategoria/{id}")]
-        public IActionResult Atualizar(int id, Categoria categ)
+        public IActionResult Atualizar(int id, CategoriaDTO categ)
         {
             try 
             {
-
                 _categoriaRepository.Atualizar(id, categ);
-
                 return Ok(categ);
             }
-
             catch (Exception ex)
             {
                 return NotFound("Categoria não encontrada");
             }
         }
-
         [HttpDelete("/DeletarCategoria/{id}")]
         public IActionResult Deletar(int id) 
         {
             try 
             {
                 _categoriaRepository.Deletar(id);
-
                 return NoContent();
             }
-
             catch (Exception ex)
             {
                 return NotFound("Categoria nao encontrado");
             }
         }
-
         [HttpPost("/CadastrarCategoria/")]
-        [SwaggerOperation(
-            Summary = "Este metodos cadastra uma categoria",
-            Description = "Este endpoint e responsavel por fazer o cadastro da categoria"
-            
-        )]
-        public IActionResult CadastrarPedido(Categoria categoria)
+        public IActionResult CadastrarPedido(CategoriaDTO categoria)
         {
             _categoriaRepository.Cadastrar(categoria);
             return Created();
