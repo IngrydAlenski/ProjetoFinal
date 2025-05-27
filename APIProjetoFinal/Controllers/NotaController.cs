@@ -99,7 +99,7 @@ namespace APIProjetoFinal.Controllers
         
 
         [HttpPost("CadastroSemImagem")]
-        public IActionResult Cadastrar(CadastraNotaSemImagem notaSemImageDTO)
+        public IActionResult Cadastrar(CadastraNotaSemImagemDTO notaSemImageDTO)
         {
             _notaRepository.CadastrarSemImagem(notaSemImageDTO);
             return Created();

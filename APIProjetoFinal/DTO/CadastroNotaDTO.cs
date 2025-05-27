@@ -13,7 +13,7 @@ namespace APIProjetoFinal.DTO
 
         public string Descricao { get; set; } = null!;
 
-        public IFormFile? ArquivoAnotacao { get; set; }
+        //public IFormFile? ArquivoAnotacao { get; set; }
         public bool? Statusnote { get; set; }
 
         //public DateTime Atualizacaonota { get; set; }

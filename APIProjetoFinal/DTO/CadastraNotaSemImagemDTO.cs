@@ -1,6 +1,6 @@
 ﻿namespace APIProjetoFinal.DTO
 {
-    public class CadastraNotaSemImagem
+    public class CadastraNotaSemImagemDTO
     {
         public int Iduser { get; set; }
 
@@ -13,7 +13,7 @@
         public bool? Statusnote { get; set; }
 
         //public DateTime Atualizacaonota { get; set; }
-        public string? Imagenote { get; set; }
+        //public string? Imagenote { get; set; }
 
         public List<string> Categorias { get; set; }//Lista par retornar as categorias
     }

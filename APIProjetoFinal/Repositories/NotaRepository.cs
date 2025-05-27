@@ -108,7 +108,7 @@ namespace APIProjetoFinal.Repositories
             return notaDTO;
         }
 
-        public CadastroNotaDTO? CadastrarSemImagem(CadastraNotaSemImagem cadastraNotaSemImagem)
+        public CadastraNotaSemImagemDTO? CadastrarSemImagem(CadastraNotaSemImagemDTO cadastraNotaSemImagem)
         {
             // 1 - Percorrer a Lista de Categorias
             //1.1 - Verificar se a Categoria ja existe ?

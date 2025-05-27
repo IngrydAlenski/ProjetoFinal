@@ -12,7 +12,7 @@ namespace APIProjetoFinal.Interface
         void Atualizar(int id, AtualizarNotaDTO nota);
         void Deletar(int id);
         CadastroNotaDTO Cadastrar(CadastroNotaDTO notaDTO);
-        CadastraNotaSemImagem CadastrarSemImagem(CadastraNotaSemImagem notaSemImagemDTO);
+        CadastraNotaSemImagemDTO CadastrarSemImagem(CadastraNotaSemImagemDTO notaSemImagemDTO);
         Nota? ArquivarNota(int id); 
 
     }
