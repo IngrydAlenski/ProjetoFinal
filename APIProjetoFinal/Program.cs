@@ -4,6 +4,7 @@ using System.Text;
 using APIProjetoFinal.Context;
 using APIProjetoFinal.Interface;
 using APIProjetoFinal.Repositories;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using static System.Net.Mime.MediaTypeNames;
@@ -83,6 +84,14 @@ builder.Services.AddSwaggerGen(c =>
                     }
                 });
 });
+var pastaDestino = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+
+//comando para criar a pasta
+if(!Directory.Exists(pastaDestino)) //verificacao se a pasta existe
+    Directory.CreateDirectory(pastaDestino);//comando para criar a pasta
+
+
+
 
 //builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
@@ -93,4 +102,12 @@ app.UseSwaggerUI();
 app.MapControllers();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseStaticFiles(
+    new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(pastaDestino), //configurar qual pasta as imagens estao disponiveis para o front ver as imagens
+        RequestPath = "/image"
+
+    });
 app.Run();

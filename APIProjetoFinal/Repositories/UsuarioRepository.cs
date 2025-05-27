@@ -15,7 +15,7 @@ namespace APIProjetoFinal.Repositories
             _context = context;
         }
 
-        public void Atualizar(int id, Usuario usuario)
+        public void Atualizar(int id, UsuarioDTO usuario)
         {
             var usuarioEncontrado = _context.Usuarios.FirstOrDefault(c => c.Iduser == id);
 
@@ -26,7 +26,7 @@ namespace APIProjetoFinal.Repositories
 
             usuarioEncontrado.Nomeuser = usuario.Nomeuser;
             usuarioEncontrado.Email = usuario.Email;
-            usuarioEncontrado.Nota = usuario.Nota;
+            //usuarioEncontrado.Nota = usuario.Nota;
             usuarioEncontrado.Senha = usuario.Senha;
             _context.SaveChanges();
         }

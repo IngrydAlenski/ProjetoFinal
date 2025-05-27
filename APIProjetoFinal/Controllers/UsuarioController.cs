@@ -48,7 +48,7 @@ namespace APIProjetoFinal.Controllers
         }
         [HttpPut("{id}")]
         [Authorize]
-        public IActionResult AtualizarUsuario(int id, Usuario usuario)
+        public IActionResult AtualizarUsuario(int id, UsuarioDTO usuario)
         {
             try
             {

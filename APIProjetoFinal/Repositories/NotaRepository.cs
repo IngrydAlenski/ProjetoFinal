@@ -108,10 +108,81 @@ namespace APIProjetoFinal.Repositories
             return notaDTO;
         }
 
+        public CadastroNotaDTO? CadastrarSemImagem(CadastraNotaSemImagem cadastraNotaSemImagem)
+        {
+            // 1 - Percorrer a Lista de Categorias
+            //1.1 - Verificar se a Categoria ja existe ?
+            //1.2 - Se existir, precisa pegar o Id da Categoria
+            //1.2 - Se nao existir, precisa cadastrar a categoria e pegar o id
+
+            List<int> idCategorias = new List<int>(); //criando uma lista para guardar os ids
+
+            foreach (string item in cadastraNotaSemImagem.Categorias)
+            {
+                var categoria = _categoriaRepository.BuscarPorNome(item); //verificando se a categoria existe
+
+                if (categoria == null)
+                {
+                    categoria = new Categoria
+                    {
+                        Nomecategoria = item,
+                        Atualizacaodata = DateTime.Now,
+                        Criacaodata = DateTime.Now
+
+                    };
+                    // TODO: Cadastrar a categoria
+                    _context.Add(categoria);
+                    _context.SaveChanges();
+
+                }
+                idCategorias.Add(categoria.Idcategoria);
+            }
+
+            //Cadastrar Nota
+            var novaNota = new Nota
+            {
+                Titulonota = cadastraNotaSemImagem.Titulonota,
+                Descricao = cadastraNotaSemImagem.Descricao,
+                Datanota = DateTime.Now,
+                Atualizacaonota = DateTime.Now,
+                //TODO: implementar o campo de status da nota 
+                Iduser = cadastraNotaSemImagem.Iduser,
+                // Imagenote = null,
+                Statusnote = false
+            };
+
+            _context.Add(novaNota);
+            _context.SaveChanges();
+
+            //Cadastrar a Categorianota
+            foreach (var item in idCategorias)
+            {
+                var categoriaNota = new Categorianota
+                {
+                    Idcategoria = novaNota.Idnota,
+                    Notaid = item
+                };
+                _context.Add(categoriaNota);
+                _context.SaveChanges();
+            }
+
+            return cadastraNotaSemImagem;
+        }
+
+
+
 
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            Nota nota = _context.Notas.Find(id);
+
+            if(nota == null)
+            {
+                throw new ArgumentNullException("Nota nao encontrada");
+            }
+            _context.Remove(nota);
+            _context.SaveChanges();
+
         }
 
         public List<NotaViewModel> ListarTodos()
