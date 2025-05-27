@@ -83,6 +83,11 @@ builder.Services.AddSwaggerGen(c =>
                     }
                 });
 });
+//var pastaDestino = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+//if (! Dictionary.Exists(pastaDestino))
+  //  Dictionary.CreateDirectory(pastaDestino);
+
+
 
 //builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
