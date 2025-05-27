@@ -82,8 +82,21 @@ namespace APIProjetoFinal.Controllers
 
 
             _notaRepository.Cadastrar(notaDTO);
+
+            //  if (notaDTO.ArquivoAnotacao != null)
+            //  {
+            //   var pastaDestino = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            //   var nomeArquivo = notaDTO.ArquivoAnotacao.FileName;
+            //   var caminhoCompleto = Path.Combine(pastaDestino, nomeArquivo);
+            // using (var stream = new FileStream(caminhoCompleto, FileMode.Create)
+            //  {
+            // notaDTO.ArquivoAnotacao.CopyTo(stream);
+            //   }
+
             return Created();
+
         }
+        
 
         [HttpPost("CadastroSemImagem")]
         public IActionResult Cadastrar(CadastraNotaSemImagem notaSemImageDTO)
@@ -108,6 +121,7 @@ namespace APIProjetoFinal.Controllers
             {
                 return NotFound("Nota nao encontrado");
             }
+
         }
 
         [HttpDelete("/DeletarNota/{id}")]
