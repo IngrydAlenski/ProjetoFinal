@@ -3,6 +3,7 @@ using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 using APIProjetoFinal.Repositories;
 using APIProjetoFinal.Serveces;
+using APIProjetoFinal.Validators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,11 +26,16 @@ namespace APIProjetoFinal.Controllers
             [HttpPost("/CadastrarUmUsuario")]
             public IActionResult Cadastrar(UsuarioDTO usuarioDTO)
             {
-                _repository.Cadastrar(usuarioDTO);
+            var resultado = new ValidacaoUsuario().Validate(usuarioDTO);
+
+            if (!resultado.IsValid)
+                return BadRequest(resultado.Errors);
+
+            _repository.Cadastrar(usuarioDTO);
                 return Created();
 
             }
-        [HttpDelete("{id}")]
+        [HttpDelete("/DeletarUsuario\"")]
         [Authorize]
         public IActionResult DeletarUsuario(int id)
         {
@@ -46,7 +52,7 @@ namespace APIProjetoFinal.Controllers
                 return NotFound("Usuario não encontrado");
             }
         }
-        [HttpPut("{id}")]
+        [HttpPut("/AtualizarUsuario/{id}")]
         [Authorize]
         public IActionResult AtualizarUsuario(int id, UsuarioDTO usuario)
         {

@@ -1,9 +1,10 @@
-﻿using APIProjetoFinal.Models;
+﻿using APIProjetoFinal.DTO;
+using APIProjetoFinal.Models;
 using FluentValidation;
 
 namespace APIProjetoFinal.Validators
 {
-    public class ValidacaoUsuario : AbstractValidator<Usuario>
+    public class ValidacaoUsuario : AbstractValidator<UsuarioDTO>
     {
         public ValidacaoUsuario()
         {

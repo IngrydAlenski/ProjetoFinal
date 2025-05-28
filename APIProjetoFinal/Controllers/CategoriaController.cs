@@ -7,6 +7,7 @@ using APIProjetoFinal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Swashbuckle.AspNetCore.Annotations;
 using APIProjetoFinal.DTO;
+using APIProjetoFinal.Validators;
 
 namespace APIProjetoFinal.Controllers
 {
@@ -69,6 +70,11 @@ namespace APIProjetoFinal.Controllers
         [HttpPost("/CadastrarCategoria/")]
         public IActionResult CadastrarPedido(CategoriaDTO categoria)
         {
+            var resultado = new ValidacaoCategoriaDTO().Validate(categoria);
+
+            if(!resultado.IsValid)
+                return BadRequest(resultado.Errors);
+
             _categoriaRepository.Cadastrar(categoria);
             return Created();
         }

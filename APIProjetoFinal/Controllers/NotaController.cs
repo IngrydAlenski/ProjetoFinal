@@ -2,6 +2,7 @@
 using APIProjetoFinal.Interface;
 using APIProjetoFinal.Models;
 using APIProjetoFinal.Repositories;
+using APIProjetoFinal.Validators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -51,7 +52,8 @@ namespace APIProjetoFinal.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("/CadastrarNota\"")]
+        
         public IActionResult Cadastrar(CadastroNotaDTO notaDTO)
         {
             if(notaDTO != null)
@@ -79,6 +81,10 @@ namespace APIProjetoFinal.Controllers
 
 
             }
+            var resultado = new ValidacaoNotaDTO().Validate(notaDTO);
+
+            if (!resultado.IsValid)
+                return BadRequest(resultado.Errors);
 
 
             _notaRepository.Cadastrar(notaDTO);
@@ -98,14 +104,14 @@ namespace APIProjetoFinal.Controllers
         }
         
 
-        [HttpPost("CadastroSemImagem")]
+        [HttpPost("/CadastroSemImagem\"")]
         public IActionResult Cadastrar(CadastraNotaSemImagemDTO notaSemImageDTO)
         {
             _notaRepository.CadastrarSemImagem(notaSemImageDTO);
             return Created();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("/AtualizarNota\"{id}")]
         public IActionResult Atualizar(int id, AtualizarNotaDTO nota)
         {
             try //Se encontrar o produto
